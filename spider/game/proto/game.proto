@@ -1,0 +1,32 @@
+syntax="proto3";
+option go_package="./;proto";
+
+service Game {
+  rpc GameList(GameListFilterRequest) returns(GameListResponse);
+  rpc GameDetail(GameDetailRequest) returns(GameDetailInfoResp);
+}
+
+message GameListFilterRequest {
+  int32 page = 1;
+  int32 pageSize = 2;
+  string keyword = 3;
+}
+
+message GameDetailRequest {
+  string gameName = 1;
+}
+
+message GameListResponse {
+  int32 total = 1;
+  repeated GameDetailInfoResp list = 2;
+}
+
+message GameDetailInfoResp {
+  string name = 1;
+  string avatarUrl = 2;
+  string company = 3;
+  string score = 4;
+  string downloadTimes = 5;
+  string apkUrl = 6;
+  string desc = 7;
+}
